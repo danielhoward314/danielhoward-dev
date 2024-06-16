@@ -15,6 +15,6 @@ export default defineConfig({
       theme: "css-variables"
     }
   },
-  output: "server",
+  output: "static",
   adapter: netlify()
 });
