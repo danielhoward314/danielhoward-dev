@@ -1,0 +1,33 @@
+---
+title: "Planning the project"
+description: "Outlining the why, what, and how of my cloud inventory."
+date: "2024-06-16"
+---
+
+---
+## Why?
+
+I want to build something that solves a real problem for which there's market demand. Cloud providers like AWS don't give you a great way to see all your cloud resources in a single view. If you're multi-cloud, then there is no single pane of glass view across all the providers you use. Smells like a SaaS product.
+
+## What?
+
+I want to build something with a focused, achievable MVP, that I can incrementally improve upon with new features.
+For all these reasons, I'm building a cloud inventory service. Connect your cloud accounts, view the resources, and apply filters to zero in on resource types.
+
+## How?
+
+<p>
+For API development, I like to use [protobufs](https://protobuf.dev/) and [gRPCs](https://grpc.io/docs/what-is-grpc/introduction/).
+Protobufs are the default serialization format for the structured data transmitted across gRPC servers and clients.
+In `.proto` files, I can define a schema for the RPC services and the messages for their requests and responses.
+Using the protobuf compiler, I can easily generate stubs for gRPC servers and clients in my backend language of choice, Go.
+With [grpc-gateway](https://grpc-ecosystem.github.io/grpc-gateway/), I can generate a reverse-proxy server which translates a RESTful JSON API into gRPC.
+</p>
+<p>
+Frontend frameworks like React, Vue, and Svelte, are pushing more and more toward the use of their respective meta-frameworks Next, Nuxt, and SvelteKit.
+The main benefits of these meta-frameworks are to enable server-side rendering and to isolate dynamic content onto "islands".
+The concept of "islands" refers to an architectural pattern where a web page is composed of multiple isolated, interactive components (or "islands") that can be independently hydrated and rendered.
+Since each page of Cloud Inventory is focused on a single piece of dynamic content, lazy loading of components should be enough to get the kind of performance I want.
+Given all of that, I want to use a Vite-build of a Vue SPA and serve up the files with nginx.
+</p>
+
